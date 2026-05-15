@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Không cho xem cấu trúc thư mục
+Options -Indexes
+
+# Đảm bảo rằng yêu cầu không phải là 1 tệp hoặc thư mục
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Điều hướng tất cả các yêu cầu tới index.php
+RewriteRule ^(.*)$ index.php?url=$1
