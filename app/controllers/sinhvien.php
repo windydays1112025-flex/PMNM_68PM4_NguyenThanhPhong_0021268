@@ -1,9 +1,11 @@
 <?php
 class sinhvien{
     public function index(){
-        echo "Đây là danh sách sinh viên";
+        //trả về view
+        require_once '../app/views/sinhvien/index.php';
     }
     public function create(){
-        echo "Đây là trang tạo sinh viên";
+        //trả về view
+        require_once '../app/views/sinhvien/create.php';
     }
 }

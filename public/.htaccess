@@ -3,7 +3,7 @@ RewriteEngine On
 # Không cho xem cấu trúc thư mục
 Options -Indexes
 
-# Đảm bảo rằng yêu cầu không phải là 1 tệp hoặc thư mục
+# Đảm bảo rằng yêu cầu không phải là 1 tệp hoặc thư mục thực tế
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
