@@ -1,7 +1,8 @@
 <?php
+    session_start();
     class auth{
         protected $user=[
-            'admin'=>'123456'
+            'admin'=>'123456',
             'phongnt'=>'123667'
         ];
         public function login(){
@@ -18,5 +19,11 @@
             }
         }
     }
+        public function logout(){
+        session_unset();
+        session_destroy();
+        header("Location: /home/login/");
+        exit();
+   }
 }
 ?> 
