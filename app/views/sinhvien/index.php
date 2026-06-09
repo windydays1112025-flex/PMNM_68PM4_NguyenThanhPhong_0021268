@@ -37,15 +37,32 @@ th {
             <th>Tên</th>
             <th>Giới tính</th>
             <th>MSSV</th>
+            <th>Thao tác</th>
         </tr>
         <?php foreach(($sinhviens ?? []) as $index => $sinhvien): ?>
         <tr>
             <td><?php echo $index + 1; ?></td>
+            <td style="display: none;"><?php echo $sinhvien['id']; ?></td>
             <td><?php echo $sinhvien['hoten']; ?></td>
             <td><?php echo $sinhvien['gioitinh']; ?></td>
             <td><?php echo $sinhvien['mssv']; ?></td>
+            <td>
+                <a class ="btn btn-primary" href="/sinhvien/edit/<?php echo $sinhvien['id']; ?>">Sửa</a>
+                <a class ="btn btn-danger" href="/sinhvien/delete/<?php echo $sinhvien['id']; ?>">Xóa</a>
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>
+    <div style ="margin-top: 20px;">
+        <?php
+            $pageSize = 5;
+            $totalPage = $totalPage ?? 1;
+    
+            for($i = 1; $i <= $totalPage; $i++){
+                $offset = ($i - 1) * $pageSize;
+           echo "<a href='/sinhvien/index/$pageSize/$offset'>$i</a>";
+        }
+        ?>
+    </div>
 </body>
 </html>

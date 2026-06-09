@@ -25,4 +25,18 @@ class sinhvienModel{
             return false;
         }
     }
+    public function paging($limit = 5, $offset = 0, $search =""){
+        $query = "SELECT * FROM tbl_sinhviens LIMIT :limit OFFSET :offset";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        //tính tổng số bản ghi để tính tổng số trang
+        $selectAllQuery = $this->conn->query("SELECT COUNT(*) FROM tbl_sinhviens");
+        $totalRecord = $selectAllQuery->fetchColumn();
+        $totalPage = ceil($totalRecord/$limit);
+        return ["sinhviens"=>$result, "totalPage"=>$totalPage];
+    }
 }
