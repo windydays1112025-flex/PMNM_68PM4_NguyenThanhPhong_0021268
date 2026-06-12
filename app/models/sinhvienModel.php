@@ -39,4 +39,25 @@ class sinhvienModel{
         $totalPage = ceil($totalRecord/$limit);
         return ["sinhviens"=>$result, "totalPage"=>$totalPage];
     }
+    public function getSinhvienById($id){
+        $query = "SELECT * FROM tbl_sinhviens WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function update($id, $hoten, $gioitinh, $mssv){
+        $query = "UPDATE tbl_sinhviens SET hoten = :hoten, gioitinh = :gioitinh, mssv = :mssv WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':hoten', $hoten);
+        $stmt->bindParam(':gioitinh', $gioitinh);
+        $stmt->bindParam(':mssv', $mssv);
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
