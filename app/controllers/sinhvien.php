@@ -59,6 +59,16 @@ class sinhvien extends Controller{
             echo "Cập nhật sinh viên thất bại";
         }
       }
+    }
+    public function delete($id){
+        $sinhvienModel = $this->model('sinhvienModel');
+        $result = $sinhvienModel->delete($id);
+        if($result){
+            echo "Xóa sinh viên thành công";
+        }
+        else{
+            echo "Xóa sinh viên thất bại";
+        }
     } 
 }
 ?>
