@@ -232,6 +232,16 @@
             <input type="text" name="keyword" placeholder="Tìm theo họ tên..."
                 value="<?= htmlspecialchars($keyword ?? '') ?>">
 
+            <select name="malop">
+                <option value="">-- Tất cả lớp --</option>
+                <?php foreach (($danhSachLop ?? []) as $lop): ?>
+                    <option value="<?= $lop['malop'] ?>"
+                        <?= ($malop ?? '') === $lop['malop'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($lop['tenlop']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
             <select name="sortBy">
                 <option value="hoten"  <?= ($sortBy ?? '') === 'hoten'  ? 'selected' : '' ?>>Sắp xếp: Họ tên</option>
                 <option value="mssv"   <?= ($sortBy ?? '') === 'mssv'   ? 'selected' : '' ?>>Sắp xếp: MSSV</option>
